@@ -26,4 +26,23 @@ Depends:
 - siblings file download and set on line 13 in the file (from https://github.com/InetIntel/Improving-Inference-of-Sibling-ASes)
 - Other informations set in config.py
 
-- 
+The consolidade_period.py create information files for a set period (the initial day and the period is set in config.py)
+Depends:
+- rov (https://github.com/InternetHealthReport/route-origin-validator);
+- numpy;
+- progressbar2
+
+The create_graph.py export ASes and its contections informatio to pdf files.
+Depends:
+- networkx (https://networkx.org/documentation/latest/auto_examples/index.html and https://pygraphviz.github.io/documentation/stable/install.html)
+- matplotlib
+
+  Set ASes to create pdf files on lines 528-536.
+
+  Order to execute the code
+  1st - download_files.py
+  2nd - reading_files.py
+  3rd - consolidate_period.py
+  4th - create_graph.py
+
+  
