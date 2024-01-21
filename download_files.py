@@ -30,7 +30,7 @@ def arguments():
         day_b = int(args.day_b)
     except:
         print(
-            "Syntaxe -y (year begin) -m (month begin) -d (day begin) -D (how many days) -r (download files again y/n) "
+            "Syntaxe -y (initial year) -m (initial month) -d (initial day) -D (how many days) -r (download files again y/n) "
             "-p (projects rv/ripe) -t (type of files, rib or updates) -a (y for all files or n for one file per day/collector)"
         )
         exit(2)
