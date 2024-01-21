@@ -6,18 +6,18 @@ The config.py file contains some configurations, like folders name, number of th
 
 The donwload_files.py code is responsible for downloading the necessary information from collectors and CAIDA, its syntax is as follows:
 
-python3 donwload_files.py -y (start of year) -m (start of month) -d (start of day) -D (how many days) -r (download files again y/n) -p (rv/madura projects) - t (file type, rib or updates) -a (y for all files or n for one file per day/collector)
--y start year, e.g. 2023
--m start month, e.g. 01
--d start day, e.g. 01
--D how many days from the start day, e.g. 30
+python3 donwload_files.py -y (inital year) -m (initial month) -d (initial day) -D (how many days) -r (download files again y/n) -p (rv/ripe projects) - t (file type, rib or updates) -a (y for all files or n for one file per day/collector)
+-y inital year, e.g. 2023
+-m inital month, e.g. 01
+-d inital day, e.g. 01
+-D how many days from the initial day, e.g. 30
 -r y to download again or n to ignore already downloaded files
--p with default value rv and mature, only inform if the download is to be performed only for one project
+-p with default value rv and ripe, only inform if the download is to be performed only for one project
 -t must be used to inform the type of files to be downloaded (rib or updates)
 -a all for all files in the period or n to download only the first file of each day from each collector
 
 donwload_files.py depends:
-- progressbar2
+- progressbar2;
 - beautifulsoup4
 
 The reading_files.py code converts all RIB files downloaded to information files to compute features from ASes and its connections:
@@ -26,13 +26,13 @@ Depends:
 - siblings file download and set on line 13 in the file (from https://github.com/InetIntel/Improving-Inference-of-Sibling-ASes)
 - Other informations set in config.py
 
-The consolidade_period.py create information files for a set period (the initial day and the period is set in config.py)
+The consolidade_period.py create information files for a set period (the initial day and the period is set in config.py file)
 Depends:
 - rov (https://github.com/InternetHealthReport/route-origin-validator);
 - numpy;
 - progressbar2
 
-The create_graph.py export ASes and its contections informatio to pdf files.
+The create_graph.py export ASes and its connections information to pdf files.
 Depends:
 - networkx (https://networkx.org/documentation/latest/auto_examples/index.html and https://pygraphviz.github.io/documentation/stable/install.html)
 - matplotlib
@@ -44,5 +44,7 @@ Depends:
   2nd - reading_files.py
   3rd - consolidate_period.py
   4th - create_graph.py
+
+  Soon the the files will be updated.
 
   
