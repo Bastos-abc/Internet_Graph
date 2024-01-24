@@ -37,13 +37,13 @@ Depends:
 - networkx (https://networkx.org/documentation/latest/auto_examples/index.html and https://pygraphviz.github.io/documentation/stable/install.html)
 - matplotlib
 
-  Set ASes to create pdf files on lines 528-536.
+Example:
 
-  Order to execute the code
-  1st - download_files.py
-  2nd - reading_files.py
-  3rd - consolidate_period.py
-  4th - create_graph.py
+python3 create_graph.py -a 123
+
+or
+
+python3 create_graph.py -a 123,124,125
 
   Soon the the files will be updated.
 
