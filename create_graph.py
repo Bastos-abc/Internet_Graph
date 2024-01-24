@@ -2,6 +2,7 @@
 import os
 import pickle
 import pandas as pd
+import argparse
 import networkx as nx
 # https://networkx.org/documentation/latest/auto_examples/index.html
 # needs scipy
@@ -13,6 +14,15 @@ import matplotlib.patches as mpatches
 from matplotlib.backends.backend_pdf import PdfPages
 from config import out_folder, img_folder, n_threads, initial_date, days
 
+
+def arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-a', '--ases', required=True)
+    args = parser.parse_args()
+    if args.ases is None:
+        print('Inform the ASes to create PDF files (Example: 123 or 123,124,125)')
+
+    return args.ases
 
 
 def node_position(vect=[], line=0, max_col=15):
@@ -494,9 +504,12 @@ def create_graph(asn='', link={}):
 
 
 if __name__ == '__main__':
+    ases = arguments()
+    print('Creating PDF files for information starting at', initial_date, 'plus', days, 'days for ASes', ases)
     file_name = initial_date + '_' + days + '_moas_period.pickle'
     if not os.path.isfile(out_folder + file_name):
         print('Error to found essential file:',file_name)
+        print("Check the config.py file and execute consolidate_period.py if the files wasn't created yet.")
         exit(1)
     out_file= open(out_folder + file_name, 'rb')
     moas = pickle.load(out_file)
@@ -525,6 +538,13 @@ if __name__ == '__main__':
     if not os.path.isdir(img_folder):
         os.mkdir(img_folder)
 
+    asns = []
+    for a in ases.split(','):
+        try:
+            asns.append(int(a))
+        except:
+            print('Check the ASN informed to create PDF files')
+    ''' ASes for test
     google = 15169
     globo = 28604
     as1 = 52890
@@ -534,11 +554,11 @@ if __name__ == '__main__':
     #ases=[globo, google, as1, sibling, moas, big]
     #ases=[3257, 2914, 23764]
     ases = [22548, globo]
-
+    '''
     with Pool(processes=n_threads) as th_pool:
-        args = [(asn, as_info) for asn in ases]
+        args = [(asn, as_info) for asn in asns]
         th_pool.starmap(create_prefix_plot, args)
-        args = [(asn, link, int(days)) for asn in ases]
+        args = [(asn, link, int(days)) for asn in asns]
         th_pool.starmap(create_graph_plot, args)
 
 
